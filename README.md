@@ -1,66 +1,51 @@
+# Financial Audit Data Extraction Script
 
-Updated on 2024-02-23T22:21:17+06:55
-Updated on 2024-02-24T14:53:54+06:55
-Updated on 2024-02-25T10:34:16+06:55
-Updated on 2024-02-23T09:34:21+06:55
-Updated on 2024-02-15T10:53:01+06:55
-Updated on 2024-02-16T00:50:25+06:55
-Updated on 2024-02-19T14:10:21+06:55
-Updated on 2024-02-20T12:13:27+06:55
-Updated on 2024-02-16T04:55:59+06:55
-Updated on 2024-02-25T09:45:01+06:55
-Updated on 2024-02-25T16:10:08+06:55
-Updated on 2024-02-15T16:02:03+06:55
-Updated on 2024-02-24T14:19:47+06:55
-Updated on 2024-02-27T13:51:31+06:55
-Updated on 2024-02-22T20:22:21+06:55
-Updated on 2024-02-16T14:44:28+06:55
-Updated on 2024-02-24T08:45:12+06:55
-Updated on 2024-02-19T12:04:32+06:55
-Updated on 2024-02-24T23:26:07+06:55
-Updated on 2024-02-18T02:02:14+06:55
-Updated on 2024-02-23T02:59:54+06:55
-Updated on 2024-02-22T10:25:21+06:55
-Updated on 2024-02-15T03:38:54+06:55
-Updated on 2024-02-27T19:27:02+06:55
-Updated on 2024-02-17T15:06:55+06:55
-Updated on 2024-02-20T13:25:17+06:55
-Updated on 2024-02-23T03:38:10+06:55
-Updated on 2024-02-17T12:15:10+06:55
-Updated on 2024-02-19T23:15:07+06:55
-Updated on 2024-02-27T21:49:13+06:55
-Updated on 2024-02-28T10:12:19+06:55
-Updated on 2024-02-25T05:39:30+06:55
-Updated on 2024-02-19T02:38:53+06:55
-Updated on 2024-02-18T00:45:34+06:55
-Updated on 2024-02-16T06:18:54+06:55
-Updated on 2024-02-21T05:08:53+06:55
-Updated on 2024-02-26T06:19:06+06:55
-Updated on 2024-02-16T00:41:34+06:55
-Updated on 2024-02-16T09:27:32+06:55
-Updated on 2024-02-16T03:49:06+06:55
-Updated on 2024-02-19T06:21:35+06:55
-Updated on 2024-02-24T05:51:29+06:55
-Updated on 2024-02-17T02:01:23+06:55
-Updated on 2024-02-18T01:21:49+06:55
-Updated on 2024-02-16T10:20:49+06:55
-Updated on 2024-02-25T04:09:33+06:55
-Updated on 2024-02-26T12:23:46+06:55
-Updated on 2024-02-18T03:15:23+06:55
-Updated on 2024-02-20T11:47:32+06:55
-Updated on 2024-02-20T20:34:43+06:55
-Updated on 2024-02-22T23:48:21+06:55
-Updated on 2024-02-14T04:33:15+06:55
-Updated on 2024-02-24T20:29:59+06:55
-Updated on 2024-02-22T12:46:12+06:55
-Updated on 2024-02-19T02:36:54+06:55
-Updated on 2024-02-21T08:08:16+06:55
-Updated on 2024-02-18T20:17:09+06:55
-Updated on 2024-02-14T05:28:18+06:55
-Updated on 2024-02-27T03:30:37+06:55
-Updated on 2024-02-26T11:53:55+06:55
-Updated on 2024-02-19T09:51:44+06:55
-Updated on 2024-02-26T03:21:13+06:55
-Updated on 2024-02-21T06:01:38+06:55
-Updated on 2024-02-20T03:57:59+06:55
-Updated on 2024-02-19T11:32:55+06:55
+This script is designed to extract current year amounts from annual reports in PDF format and generate a CSV file with the extracted data.
+
+## Prerequisites
+
+- Python 3.x installed on your system.
+- `PyMuPDF` library (`fitz`) for handling PDF files. Install it using:
+  ```bash
+  pip install pymupdf
+  ```
+
+## Usage
+
+1. Place the PDF files you want to extract data from in a directory specified by the `inputfolder` variable in the script.
+2. Run the script using Python:
+   ```bash
+   python financial-data-extract.py
+   ```
+3. The extracted data will be saved in a CSV file named `output file path.csv`.
+
+## Script Details
+
+The script performs the following steps:
+
+1. **Imports**: Imports necessary libraries such as `fitz` for PDF handling, `re` for regular expressions, `os` for file operations, and `csv` for writing to CSV files.
+2. **Configuration**: Specifies the input folder containing PDF files and the output CSV file path.
+3. **Functions**:
+   - `string_to_integer_or_float`: Converts a string to an integer or float.
+   - `find_tables`: Extracts tables from the text using regular expressions.
+4. **Line Items**: Defines line items for balance sheets, profit and loss statements, and cash flow statements with their corresponding regex patterns.
+5. **PDF Processing**:
+   - Loops through all PDF files in the input folder.
+   - Extracts fund names from file names.
+   - Reads text from each PDF page and concatenates it.
+   - Extracts tables using regular expressions.
+6. **Data Extraction**:
+   - Iterates through defined line items to extract corresponding amounts from the extracted tables.
+7. **Output Generation**: Writes the extracted data to a CSV file.
+
+## Improvements
+
+- **Error Handling**: Add error handling for missing PDF files or read errors.
+- **Logging**: Implement logging to track execution progress and issues.
+- **Configuration Management**: Use a configuration file (e.g., JSON) for settings.
+- **Code Comments**: Add more comments for better readability.
+- **Unit Testing**: Write unit tests to ensure the script functions correctly.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository, make your changes, and submit a pull request.
